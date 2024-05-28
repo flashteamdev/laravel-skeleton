@@ -18,6 +18,10 @@ git fetch --all
 git merge template/main --allow-unrelated-histories
 ```
 
+## VS Code Extension
+
+Mở VS Code Extension gõ @recommended và cài toàn bộ `WORKSPACE RECOMMENDATIONS` extension.
+
 ## Format Code
 
 Vui lòng chạy lệnh dưới đây trước khi gửi Pull Request!

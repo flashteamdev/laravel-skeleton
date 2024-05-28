@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "xdebug.php-debug",
+        "neilbrayfield.php-docblocker",
+        "bmewburn.vscode-intelephense-client",
+        "mehedidracula.php-namespace-resolver",
+        "sanderronde.phpstan-vscode",
+        "recca0120.vscode-phpunit",
+        "open-southeners.laravel-pint",
+        "shufo.vscode-blade-formatter"
+    ]
+}
