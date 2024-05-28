@@ -1,0 +1,75 @@
+<?php
+
+use App\Models\User;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Auth;
+
+if (! function_exists('formatVND')) {
+    function formatVND(int $number): string
+    {
+        // Format the number with thousands separator and no decimals
+        $formattedNumber = number_format($number, 0, '', '.');
+
+        // Append the Vietnamese currency symbol
+        return $formattedNumber.' ₫';
+    }
+}
+
+if (! function_exists('authUser')) {
+    function authUser(): User
+    {
+        // @phpstan-ignore-next-line
+        return Auth::user();
+    }
+}
+
+if (! function_exists('typeString')) {
+    function typeString(mixed $value, string $fallback = ''): string
+    {
+        if (is_string($value)) {
+            return $value;
+        }
+
+        try {
+            // @phpstan-ignore-next-line
+            return strval($value);
+        } catch (Throwable) {
+            return $fallback;
+        }
+    }
+}
+
+if (! function_exists('typeArray')) {
+    /**
+     * @param  array<mixed>  $default
+     * @return array<mixed>
+     *
+     * @throws BindingResolutionException
+     */
+    function typeArray(mixed $value, array $fallback = []): array
+    {
+        if (is_array($value)) {
+            return $value;
+        }
+
+        logger('Expect array -> '.gettype($value));
+
+        return $fallback;
+    }
+}
+
+if (! function_exists('typeInteger')) {
+    function typeInteger(mixed $value, int $fallback = 0): int
+    {
+        if (is_int($value)) {
+            return $value;
+        }
+
+        try {
+            // @phpstan-ignore-next-line
+            return intval($value);
+        } catch (Throwable) {
+            return $fallback;
+        }
+    }
+}
