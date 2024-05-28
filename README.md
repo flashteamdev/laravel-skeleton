@@ -3,6 +3,7 @@
 Hãy bấm nút `Use this template` > `Create a new repository`
 
 ```bash
+composer install
 cp .env.example .env
 php artisan key:generate --force
 php artisan storage:link
