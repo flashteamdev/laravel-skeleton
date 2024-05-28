@@ -28,7 +28,6 @@ if (! function_exists('authUser')) {
 if (! function_exists('diskPublic')) {
     function diskPublic(): FilesystemAdapter
     {
-        // @phpstan-ignore-next-line
         return Storage::disk('public');
     }
 }
@@ -51,7 +50,7 @@ if (! function_exists('typeString')) {
 
 if (! function_exists('typeArray')) {
     /**
-     * @param  array<mixed>  $default
+     * @param  array<mixed>  $fallback
      * @return array<mixed>
      *
      * @throws BindingResolutionException
