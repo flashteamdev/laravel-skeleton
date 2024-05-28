@@ -11,30 +11,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('avatar')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::create('users', function (Blueprint $blueprint): void {
+            $blueprint->id();
+            $blueprint->string('name');
+            $blueprint->string('email')->unique();
+            $blueprint->string('avatar')->nullable();
+            $blueprint->timestamp('email_verified_at')->nullable();
+            $blueprint->string('password');
+            $blueprint->rememberToken();
+            $blueprint->timestamps();
         });
 
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+        Schema::create('password_reset_tokens', function (Blueprint $blueprint): void {
+            $blueprint->string('email')->primary();
+            $blueprint->string('token');
+            $blueprint->timestamp('created_at')->nullable();
         });
 
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
+        Schema::create('sessions', function (Blueprint $blueprint): void {
+            $blueprint->string('id')->primary();
+            $blueprint->foreignId('user_id')->nullable()->index();
+            $blueprint->string('ip_address', 45)->nullable();
+            $blueprint->text('user_agent')->nullable();
+            $blueprint->longText('payload');
+            $blueprint->integer('last_activity')->index();
         });
     }
 

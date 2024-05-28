@@ -2,7 +2,9 @@
 
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 if (! function_exists('formatVND')) {
     function formatVND(int $number): string
@@ -20,6 +22,14 @@ if (! function_exists('authUser')) {
     {
         // @phpstan-ignore-next-line
         return Auth::user();
+    }
+}
+
+if (! function_exists('diskPublic')) {
+    function diskPublic(): FilesystemAdapter
+    {
+        // @phpstan-ignore-next-line
+        return Storage::disk('public');
     }
 }
 

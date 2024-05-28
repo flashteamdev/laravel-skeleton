@@ -12,7 +12,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -32,7 +31,7 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  *
- * @mixin \Eloquent
+ * @mixin \Illuminate\Database\Eloquent\Model
  */
 class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
 {
@@ -91,6 +90,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return $this->avatar ? Storage::disk('public')->url($this->avatar) : 'https://gravatar.com/avatar/'.hash('sha256', $this->email);
+        return $this->avatar ? diskPublic()->url($this->avatar) : 'https://gravatar.com/avatar/'.hash('sha256', $this->email);
     }
 }
