@@ -26,3 +26,11 @@ Vui lòng chạy lệnh dưới đây trước khi gửi Pull Request!
 composer ide
 php artisan test
 ```
+
+## Test Coverage
+
+```bash
+php artisan test --coverage
+```
+
+Mở trình duyệt http://127.0.0.1:8000/coverage/index.html để xem kết quả
