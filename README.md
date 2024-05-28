@@ -17,3 +17,7 @@ git remote add template https://github.com/flashteamdev/laravel-skeleton.git
 git fetch --all
 git merge template/main --allow-unrelated-histories
 ```
+
+## Format Code
+
+Vui lòng chạy lệnh `composer ide` trước khi gửi Pull Request!
