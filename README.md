@@ -20,4 +20,9 @@ git merge template/main --allow-unrelated-histories
 
 ## Format Code
 
-Vui lòng chạy lệnh `composer ide` trước khi gửi Pull Request!
+Vui lòng chạy lệnh dưới đây trước khi gửi Pull Request!
+
+```bash
+composer ide
+php artisan test
+```
