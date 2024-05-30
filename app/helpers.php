@@ -6,17 +6,6 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-if (! function_exists('formatVND')) {
-    function formatVND(int $number): string
-    {
-        // Format the number with thousands separator and no decimals
-        $formattedNumber = number_format($number, 0, '', '.');
-
-        // Append the Vietnamese currency symbol
-        return $formattedNumber.' ₫';
-    }
-}
-
 if (! function_exists('authUser')) {
     function authUser(): User
     {
