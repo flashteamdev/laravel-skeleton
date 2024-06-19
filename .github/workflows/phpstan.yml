@@ -1,0 +1,25 @@
+name: PHPStan Check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: shivammathur/setup-php@fc14643b0a99ee9db10a3c025a33d76544fa3761
+        with:
+          php-version: "8.2"
+      - uses: actions/checkout@v4
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate
+      - name: phpstan analyse
+        run: ./vendor/bin/phpstan analyse
