@@ -36,7 +36,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
 {
     use AuthMustVerifyEmail;
+
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
+
     use Notifiable;
 
     /**
