@@ -12,10 +12,12 @@ php artisan migrate
 
 ## Đồng bộ code từ template này
 
-```
+```bash
 git remote add template https://github.com/flashteamdev/laravel-skeleton.git
 git fetch --all
 git merge template/main --allow-unrelated-histories
+# nếu conflict xảy ra, chạy lệnh này
+git diff --name-only --diff-filter=U | xargs git checkout --ours --
 ```
 
 ## VS Code Extension
