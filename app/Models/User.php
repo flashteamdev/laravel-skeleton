@@ -93,4 +93,14 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     {
         return $this->avatar ? diskPublic()->url($this->avatar) : 'https://gravatar.com/avatar/'.hash('sha256', $this->email);
     }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\VerifyEmail);
+    }
 }
