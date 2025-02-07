@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use DateTimeZone;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -32,6 +33,11 @@ class UserResource extends Resource
                     ->disk('public')
                     ->directory('avatars')
                     ->avatar(),
+                Forms\Components\Select::make('timezone')
+                    ->options(
+                        array_combine(DateTimeZone::listIdentifiers(), DateTimeZone::listIdentifiers())
+                    )
+                    ->searchable(),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
                     ->password()
@@ -65,6 +71,7 @@ class UserResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('id', 'desc')
             ->filters([
                 //
             ])

@@ -17,7 +17,8 @@ use Illuminate\Notifications\Notifiable;
  * @property string $email
  * @property string|null $avatar
  * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property mixed $password
+ * @property string $password
+ * @property string|null $timezone +7 or Asia/Ho_Chi_Minh
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -25,9 +26,9 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $notifications_count
  *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User query()
  *
  * @mixin \Illuminate\Database\Eloquent\Model
  */
@@ -50,6 +51,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
         'email',
         'avatar',
         'password',
+        'timezone',
     ];
 
     /**
