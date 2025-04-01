@@ -8,6 +8,7 @@ use Filament\Panel;
 use Illuminate\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -102,5 +103,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new \App\Notifications\VerifyEmail);
+    }
+
+    /** @return HasMany<\App\Models\Blog\Post> */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(\App\Models\Blog\Post::class, 'blog_author_id');
     }
 }
