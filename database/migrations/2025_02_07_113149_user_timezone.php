@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $blueprint) {
+        Schema::table('users', function (Blueprint $blueprint): void {
             $blueprint->string('timezone')->nullable()->comment('+7 or Asia/Ho_Chi_Minh')->after('remember_token');
         });
     }
