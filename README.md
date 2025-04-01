@@ -8,6 +8,8 @@ cp .env.example .env
 php artisan key:generate --force
 php artisan storage:link
 php artisan migrate
+# tạo tài khoản admin, nhập test@example.com và password
+php artisan make:filament-user
 ```
 
 ## Đồng bộ code từ template này
