@@ -61,4 +61,19 @@ class Category extends Model
             'is_visible' => 'boolean',
         ];
     }
+
+    /**
+     * Get all categories from cache
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<int, static>
+     */
+    public static function getAllFromCache()
+    {
+        return cache()->remember('blog_categories', now()->addDay(), function () {
+            return static::query()
+                ->where('is_visible', true)
+                ->orderBy('name')
+                ->get();
+        });
+    }
 }
