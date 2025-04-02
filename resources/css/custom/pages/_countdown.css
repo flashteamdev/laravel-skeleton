@@ -1,0 +1,21 @@
+
+/*********************************/
+/*         Countdown             */
+/*===============================*/
+#token-sale .count-number .count-head {
+    @apply relative block uppercase md:-mt-5 md:text-base text-sm leading-[1px] font-bold;
+}
+#countdown {
+    .count-down {
+        .count-head {
+            @apply relative block -translate-y-[25px] uppercase text-sm tracking-[1px];
+        }
+    }
+}
+
+/* Maintenance */
+#maintenance {
+    .indicator {
+        @apply text-lg;
+    }
+}
