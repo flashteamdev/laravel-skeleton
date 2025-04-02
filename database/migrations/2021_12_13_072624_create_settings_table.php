@@ -6,21 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table): void {
-            $table->id();
+        Schema::create('settings', function (Blueprint $blueprint): void {
+            $blueprint->id();
 
-            $table->string('group')->index();
-            $table->string('name');
-            $table->boolean('locked');
-            $table->json('payload');
+            $blueprint->string('group')->index();
+            $blueprint->string('name');
+            $blueprint->boolean('locked');
+            $blueprint->json('payload');
 
-            $table->timestamps();
+            $blueprint->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('settings');
     }

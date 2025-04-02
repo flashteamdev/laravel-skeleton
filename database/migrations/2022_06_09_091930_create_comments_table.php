@@ -7,22 +7,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+        Schema::create('comments', function (Blueprint $blueprint): void {
+            $blueprint->id();
 
-            $table->foreignIdFor(User::class)->nullable()->constrained('users')->cascadeOnDelete();
-            $table->morphs('commentable');
-            $table->text('title')->nullable();
-            $table->text('content')->nullable();
-            $table->boolean('is_visible')->default(false);
+            $blueprint->foreignIdFor(User::class)->nullable()->constrained('users')->cascadeOnDelete();
+            $blueprint->morphs('commentable');
+            $blueprint->text('title')->nullable();
+            $blueprint->text('content')->nullable();
+            $blueprint->boolean('is_visible')->default(false);
 
-            $table->timestamps();
+            $blueprint->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('comments');
     }

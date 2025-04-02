@@ -16,7 +16,8 @@
         "filament/spatie-laravel-tags-plugin": "^3.3",
         "filament/spatie-laravel-translatable-plugin": "^3.3",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "mohamedsabil83/filament-forms-tinyeditor": "^2.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",

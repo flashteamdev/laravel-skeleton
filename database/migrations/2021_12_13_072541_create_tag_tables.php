@@ -6,29 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tags', function (Blueprint $blueprint): void {
+            $blueprint->id();
 
-            $table->json('name');
-            $table->json('slug');
-            $table->string('type')->nullable();
-            $table->integer('order_column')->nullable();
+            $blueprint->json('name');
+            $blueprint->json('slug');
+            $blueprint->string('type')->nullable();
+            $blueprint->integer('order_column')->nullable();
 
-            $table->timestamps();
+            $blueprint->timestamps();
         });
 
-        Schema::create('taggables', function (Blueprint $table) {
-            $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+        Schema::create('taggables', function (Blueprint $blueprint): void {
+            $blueprint->foreignId('tag_id')->constrained()->cascadeOnDelete();
 
-            $table->morphs('taggable');
+            $blueprint->morphs('taggable');
 
-            $table->unique(['tag_id', 'taggable_id', 'taggable_type']);
+            $blueprint->unique(['tag_id', 'taggable_id', 'taggable_type']);
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('taggables');
         Schema::dropIfExists('tags');

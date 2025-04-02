@@ -8,32 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('blog_posts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('blog_author_id')->nullable()->cascadeOnDelete();
-            $table->foreignId('blog_category_id')->nullable()->nullOnDelete();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->longText('content');
-            $table->date('published_at')->nullable();
-            $table->string('seo_title', 60)->nullable();
-            $table->string('seo_description', 160)->nullable();
-            $table->string('image')->nullable();
-            $table->timestamps();
+        Schema::create('blog_posts', function (Blueprint $blueprint): void {
+            $blueprint->id();
+            $blueprint->foreignId('blog_author_id')->nullable()->cascadeOnDelete();
+            $blueprint->foreignId('blog_category_id')->nullable()->nullOnDelete();
+            $blueprint->string('title');
+            $blueprint->string('slug')->unique();
+            $blueprint->string('content_type')->default('markdown')->comment('markdown, html');
+            $blueprint->longText('content');
+            $blueprint->date('published_at')->nullable();
+            $blueprint->string('seo_title', 60)->nullable();
+            $blueprint->string('seo_description', 160)->nullable();
+            $blueprint->string('image')->nullable();
+            $blueprint->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('blog_posts');
     }

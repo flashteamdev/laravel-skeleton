@@ -6,6 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $description
+ * @property bool $is_visible
+ * @property string|null $seo_title
+ * @property string|null $seo_description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Blog\Post> $posts
+ * @property-read int|null $posts_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category query()
+ *
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 class Category extends Model
 {
     use HasFactory;
@@ -27,16 +46,19 @@ class Category extends Model
         'seo_description',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'is_visible' => 'boolean',
-    ];
-
     /** @return HasMany<Post> */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'blog_category_id');
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'is_visible' => 'boolean',
+        ];
     }
 }

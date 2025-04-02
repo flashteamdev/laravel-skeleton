@@ -65,7 +65,7 @@ class LinkResource extends Resource
                 TextEntry::make('url')
                     ->label('URL')
                     ->columnSpanFull()
-                    ->url(fn (Link $record): string => '#' . urlencode($record->url)),
+                    ->url(fn (Link $record): string => '#'.urlencode($record->url)),
                 ImageEntry::make('image'),
             ]);
     }
@@ -114,7 +114,7 @@ class LinkResource extends Resource
                     ->label('Visit link')
                     ->icon('heroicon-m-arrow-top-right-on-square')
                     ->color('gray')
-                    ->url(fn (Link $record): string => '#' . urlencode($record->url)),
+                    ->url(fn (Link $record): string => '#'.urlencode($record->url)),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

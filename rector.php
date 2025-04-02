@@ -20,6 +20,7 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withSkip([
+        __DIR__.'/app/Filament',
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
         AddOverrideAttributeToOverriddenMethodsRector::class,

@@ -40,7 +40,6 @@ class CategoryResource extends Resource
                     ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
 
                 Forms\Components\TextInput::make('slug')
-                    ->disabled()
                     ->dehydrated()
                     ->required()
                     ->maxLength(255)

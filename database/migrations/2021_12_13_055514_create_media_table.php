@@ -6,31 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('media', function (Blueprint $blueprint): void {
+            $blueprint->bigIncrements('id');
 
-            $table->morphs('model');
-            $table->uuid('uuid')->nullable()->unique();
-            $table->string('collection_name');
-            $table->string('name');
-            $table->string('file_name');
-            $table->string('mime_type')->nullable();
-            $table->string('disk');
-            $table->string('conversions_disk')->nullable();
-            $table->unsignedBigInteger('size');
-            $table->json('manipulations');
-            $table->json('custom_properties');
-            $table->json('generated_conversions');
-            $table->json('responsive_images');
-            $table->unsignedInteger('order_column')->nullable();
+            $blueprint->morphs('model');
+            $blueprint->uuid('uuid')->nullable()->unique();
+            $blueprint->string('collection_name');
+            $blueprint->string('name');
+            $blueprint->string('file_name');
+            $blueprint->string('mime_type')->nullable();
+            $blueprint->string('disk');
+            $blueprint->string('conversions_disk')->nullable();
+            $blueprint->unsignedBigInteger('size');
+            $blueprint->json('manipulations');
+            $blueprint->json('custom_properties');
+            $blueprint->json('generated_conversions');
+            $blueprint->json('responsive_images');
+            $blueprint->unsignedInteger('order_column')->nullable();
 
-            $table->nullableTimestamps();
+            $blueprint->nullableTimestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('media');
     }

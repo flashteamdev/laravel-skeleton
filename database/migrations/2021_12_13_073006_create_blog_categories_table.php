@@ -8,29 +8,25 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('blog_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->longText('description')->nullable();
-            $table->boolean('is_visible')->default(false);
-            $table->string('seo_title', 60)->nullable();
-            $table->string('seo_description', 160)->nullable();
-            $table->timestamps();
+        Schema::create('blog_categories', function (Blueprint $blueprint): void {
+            $blueprint->id();
+            $blueprint->string('name');
+            $blueprint->string('slug')->unique();
+            $blueprint->longText('description')->nullable();
+            $blueprint->boolean('is_visible')->default(false);
+            $blueprint->string('seo_title', 60)->nullable();
+            $blueprint->string('seo_description', 160)->nullable();
+            $blueprint->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('blog_categories');
     }

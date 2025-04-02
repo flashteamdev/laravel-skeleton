@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class PostResource extends Resource
 {
@@ -50,14 +51,38 @@ class PostResource extends Resource
                             ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
 
                         Forms\Components\TextInput::make('slug')
-                            ->disabled()
                             ->dehydrated()
                             ->required()
                             ->maxLength(255)
                             ->unique(Post::class, 'slug', ignoreRecord: true),
 
+                        Forms\Components\Radio::make('content_type')
+                            ->label('Content Type')
+                            ->options([
+                                'markdown' => 'Markdown',
+                                'html' => 'HTML',
+                            ])
+                            ->default('markdown')
+                            ->required()
+                            ->reactive()
+                            ->inline(),
+
                         Forms\Components\MarkdownEditor::make('content')
                             ->required()
+                            ->fileAttachmentsDirectory('blog/posts/content')
+                            ->getUploadedAttachmentUrlUsing(fn ($file): string => str(diskPublic()->url($file))->replace(
+                                config('app.url'),
+                                ''
+                            ))
+                            ->visible(fn ($get) => $get('content_type') === 'markdown')
+                            ->columnSpan('full'),
+
+                        TinyEditor::make('content')
+                            ->required()
+                            ->maxHeight(600)
+                            ->showMenuBar()
+                            ->fileAttachmentsDirectory('blog/posts/content')
+                            ->visible(fn ($get) => $get('content_type') === 'html')
                             ->columnSpan('full'),
 
                         Forms\Components\Select::make('blog_author_id')

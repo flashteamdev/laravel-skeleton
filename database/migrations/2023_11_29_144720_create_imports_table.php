@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('imports', function (Blueprint $table) {
-            $table->id();
-            $table->timestamp('completed_at')->nullable();
-            $table->string('file_name');
-            $table->string('file_path');
-            $table->string('importer');
-            $table->unsignedInteger('processed_rows')->default(0);
-            $table->unsignedInteger('total_rows');
-            $table->unsignedInteger('successful_rows')->default(0);
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
+        Schema::create('imports', function (Blueprint $blueprint): void {
+            $blueprint->id();
+            $blueprint->timestamp('completed_at')->nullable();
+            $blueprint->string('file_name');
+            $blueprint->string('file_path');
+            $blueprint->string('importer');
+            $blueprint->unsignedInteger('processed_rows')->default(0);
+            $blueprint->unsignedInteger('total_rows');
+            $blueprint->unsignedInteger('successful_rows')->default(0);
+            $blueprint->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $blueprint->timestamps();
         });
     }
 
