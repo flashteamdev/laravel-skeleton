@@ -6,19 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table): void {
-            $table->id();
+        Schema::create('settings', function (Blueprint $blueprint): void {
+            $blueprint->id();
 
-            $table->string('group');
-            $table->string('name');
-            $table->boolean('locked')->default(false);
-            $table->json('payload');
+            $blueprint->string('group');
+            $blueprint->string('name');
+            $blueprint->boolean('locked')->default(false);
+            $blueprint->json('payload');
 
-            $table->timestamps();
+            $blueprint->timestamps();
 
-            $table->unique(['group', 'name']);
+            $blueprint->unique(['group', 'name']);
         });
     }
 };

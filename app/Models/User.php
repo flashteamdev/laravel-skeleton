@@ -2,14 +2,20 @@
 
 namespace App\Models;
 
+use App\Notifications\VerifyEmail;
+use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -17,19 +23,27 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $name
  * @property string $email
  * @property string|null $avatar
- * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
  * @property string|null $timezone +7 or Asia/Ho_Chi_Minh
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
+ * @property-read int|null $roles_count
  *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User query()
+ * @method static Builder<static>|User newModelQuery()
+ * @method static Builder<static>|User newQuery()
+ * @method static Builder<static>|User permission($permissions, $without = false)
+ * @method static Builder<static>|User query()
+ * @method static Builder<static>|User role($roles, $guard = null, $without = false)
+ * @method static Builder<static>|User withoutPermission($permissions)
+ * @method static Builder<static>|User withoutRole($roles, $guard = null)
  *
  * @mixin \Illuminate\Database\Eloquent\Model
  */
@@ -37,7 +51,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
 {
     use AuthMustVerifyEmail;
 
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
 
     use HasRoles;
@@ -103,6 +117,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
      */
     public function sendEmailVerificationNotification(): void
     {
-        $this->notify(new \App\Notifications\VerifyEmail);
+        $this->notify(new VerifyEmail);
     }
 }

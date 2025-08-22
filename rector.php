@@ -19,6 +19,8 @@ return RectorConfig::configure()
         __DIR__.'/public',
         __DIR__.'/tests',
     ])
+    ->withSkipPath(__DIR__.'/app/Filament')
+    // ->withSkipPath(__DIR__.'/app/Livewire')
     ->withSkip([
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
