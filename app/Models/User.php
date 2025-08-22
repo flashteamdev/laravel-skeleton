@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int $id
@@ -39,6 +40,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
 
+    use HasRoles;
     use Notifiable;
 
     /**
