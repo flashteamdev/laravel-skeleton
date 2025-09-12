@@ -2,12 +2,11 @@
 
 namespace App\Filament\Resources\Blog\Links\Pages;
 
-use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
-use Filament\Actions\CreateAction;
-use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
 use App\Filament\Resources\Blog\Links\LinkResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
 
 class ListLinks extends ListRecords
 {

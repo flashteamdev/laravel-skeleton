@@ -22,8 +22,7 @@ class CategoryImporter extends Importer
                 ->requiredMapping()
                 ->rules(['required', 'max:255'])
                 ->example('category-a'),
-            ImportColumn::make('description')
-                ->example('This is the description for Category A.'),
+            ImportColumn::make('description')->example('This is the description for Category A.'),
             ImportColumn::make('is_visible')
                 ->label('Visibility')
                 ->requiredMapping()
@@ -50,10 +49,20 @@ class CategoryImporter extends Importer
 
     public static function getCompletedNotificationBody(Import $import): string
     {
-        $body = 'Your blog category import has completed and '.number_format($import->successful_rows).' '.str('row')->plural($import->successful_rows).' imported.';
+        $body =
+            'Your blog category import has completed and '.
+            number_format($import->successful_rows).
+            ' '.
+            str('row')->plural($import->successful_rows).
+            ' imported.';
 
         if ($failedRowsCount = $import->getFailedRowsCount()) {
-            $body .= ' '.number_format($failedRowsCount).' '.str('row')->plural($failedRowsCount).' failed to import.';
+            $body .=
+                ' '.
+                number_format($failedRowsCount).
+                ' '.
+                str('row')->plural($failedRowsCount).
+                ' failed to import.';
         }
 
         return $body;
