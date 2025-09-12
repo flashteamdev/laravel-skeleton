@@ -76,6 +76,10 @@
         ],
         "latest": [
             "composer show --no-dev --direct --name-only | xargs composer require"
+        ],
+        "format": [
+            "mago fmt",
+            "./vendor/bin/pint --parallel"
         ]
     },
     "extra": {

@@ -29,48 +29,37 @@ class UserResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                FileUpload::make('avatar')
-                    ->disk('public')
-                    ->directory('avatars')
-                    ->avatar(),
-                Select::make('timezone')
-                    ->options(
-                        array_combine(DateTimeZone::listIdentifiers(), DateTimeZone::listIdentifiers())
-                    )
-                    ->searchable(),
-                DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
-                    ->maxLength(255)
-                    ->required(fn ($component, $get, $livewire, $model, $record, $set, $state): bool => $record === null)
-                    ->dehydrateStateUsing(fn ($state) => empty($state) ? '' : Hash::make($state)),
-            ]);
+        return $schema->components([
+            TextInput::make('name')->required()->maxLength(255),
+            TextInput::make('email')
+                ->email()
+                ->required()
+                ->maxLength(255),
+            FileUpload::make('avatar')
+                ->disk('public')
+                ->directory('avatars')
+                ->avatar(),
+            Select::make('timezone')
+                ->options(array_combine(DateTimeZone::listIdentifiers(), DateTimeZone::listIdentifiers()))
+                ->searchable(),
+            DateTimePicker::make('email_verified_at'),
+            TextInput::make('password')
+                ->password()
+                ->maxLength(255)
+                ->required(fn ($component, $get, $livewire, $model, $record, $set, $state): bool => $record === null)
+                ->dehydrateStateUsing(fn ($state) => empty($state) ? '' : Hash::make($state)),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->searchable(),
-                TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->searchable(),
-                ImageColumn::make('avatar')
-                    ->circular(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('id')->searchable(),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('email')->searchable(),
+                ImageColumn::make('avatar')->circular(),
+                TextColumn::make('email_verified_at')->dateTime()->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

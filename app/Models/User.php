@@ -109,7 +109,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return $this->avatar ? diskPublic()->url($this->avatar) : 'https://gravatar.com/avatar/'.hash('sha256', $this->email);
+        return $this->avatar
+            ? diskPublic()->url($this->avatar)
+            : ('https://gravatar.com/avatar/'.hash('sha256', $this->email));
     }
 
     /**

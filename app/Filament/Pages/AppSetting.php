@@ -15,9 +15,8 @@ class AppSetting extends SettingsPage
 
     public function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                // ...
-            ]);
+        return $schema->components([
+            // ...
+        ]);
     }
 }
