@@ -2,24 +2,25 @@
 
 namespace App\Models;
 
-use App\Notifications\VerifyEmail;
 use App\Models\Blog\Post;
-use Illuminate\Support\Carbon;
-use Illuminate\Notifications\DatabaseNotificationCollection;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Database\Eloquent\Collection;
+use App\Notifications\VerifyEmail;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int $id
@@ -43,6 +44,20 @@ use Illuminate\Notifications\Notifiable;
  * @method static Builder<static>|User newQuery()
  * @method static Builder<static>|User query()
  *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
+ * @property-read int|null $roles_count
+ *
+ * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
+ * @method static Builder<static>|User newModelQuery()
+ * @method static Builder<static>|User newQuery()
+ * @method static Builder<static>|User permission($permissions, $without = false)
+ * @method static Builder<static>|User query()
+ * @method static Builder<static>|User role($roles, $guard = null, $without = false)
+ * @method static Builder<static>|User withoutPermission($permissions)
+ * @method static Builder<static>|User withoutRole($roles, $guard = null)
+ *
  * @mixin Model
  */
 class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
@@ -52,6 +67,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     /** @use HasFactory<UserFactory> */
     use HasFactory;
 
+    use HasRoles;
     use Notifiable;
 
     /**
@@ -106,7 +122,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return $this->avatar ? diskPublic()->url($this->avatar) : 'https://gravatar.com/avatar/'.hash('sha256', $this->email);
+        return $this->avatar
+            ? diskPublic()->url($this->avatar)
+            : ('https://gravatar.com/avatar/'.hash('sha256', $this->email));
     }
 
     /**

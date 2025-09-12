@@ -10,6 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "althinect/filament-spatie-roles-permissions": "3.x-dev",
         "filament/filament": "^4.0",
         "filament/spatie-laravel-media-library-plugin": "^4.0",
         "filament/spatie-laravel-settings-plugin": "^4.0",
@@ -17,7 +18,9 @@
         "lara-zeus/spatie-translatable": "^1.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "nguyentranchung/filament-forms-tinyeditor": "dev-main"
+        "nguyentranchung/filament-forms-tinyeditor": "dev-main",
+        "spatie/laravel-permission": "^6.21",
+        "spatie/laravel-settings": "^3.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
@@ -26,6 +29,7 @@
         "fakerphp/faker": "^1.24",
         "filament/upgrade": "^4.0",
         "larastan/larastan": "^3.2",
+        "laravel/boost": "^1.0",
         "laravel/pail": "^1.2",
         "laravel/pint": "^1.21",
         "laravel/sail": "^1.41",
@@ -72,10 +76,14 @@
         "ide": [
             "php artisan ide-helper:models --write --reset",
             "./vendor/bin/rector",
-            "./vendor/bin/pint"
+            "./vendor/bin/pint --parallel"
         ],
         "latest": [
             "composer show --no-dev --direct --name-only | xargs composer require"
+        ],
+        "format": [
+            "mago fmt",
+            "./vendor/bin/pint --parallel"
         ]
     },
     "extra": {
