@@ -72,11 +72,9 @@ class Category extends Model
      */
     public static function getAllFromCache()
     {
-        return cache()->remember('blog_categories', now()->addDay(), function () {
-            return static::query()
-                ->where('is_visible', true)
-                ->orderBy('name')
-                ->get();
-        });
+        return cache()->remember('blog_categories', now()->addDay(), fn () => static::query()
+            ->where('is_visible', true)
+            ->orderBy('name')
+            ->get());
     }
 }

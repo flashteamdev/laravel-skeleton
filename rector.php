@@ -41,6 +41,7 @@ return RectorConfig::configure()
         strictBooleans: true,
     )
     ->withPhpSets(php83: true)
+    ->withImportNames(removeUnusedImports: true)
     ->withSets([
         LaravelLevelSetList::UP_TO_LARAVEL_110,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,

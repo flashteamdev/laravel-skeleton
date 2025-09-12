@@ -43,7 +43,7 @@ use Spatie\Tags\Tag;
  * @method static Builder<static>|Post withAllTagsOfAnyType($tags)
  * @method static Builder<static>|Post withAnyTags((ArrayAccess|Tag|array|string) $tags, ?string $type = null)
  * @method static Builder<static>|Post withAnyTagsOfAnyType($tags)
- * @method static Builder<static>|Post withAnyTagsOfType((array|string) $type)
+ * @method static Builder<static>|Post withAnyTagsOfType(array|string $type)
  * @method static Builder<static>|Post withoutTags((ArrayAccess|Tag|array|string) $tags, ?string $type = null)
  *
  * @mixin Model
