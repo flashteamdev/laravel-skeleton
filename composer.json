@@ -10,20 +10,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "filament/filament": "^3.3",
-        "filament/spatie-laravel-media-library-plugin": "^3.3",
-        "filament/spatie-laravel-settings-plugin": "^3.3",
-        "filament/spatie-laravel-tags-plugin": "^3.3",
-        "filament/spatie-laravel-translatable-plugin": "^3.3",
+        "filament/filament": "^4.0",
+        "filament/spatie-laravel-media-library-plugin": "^4.0",
+        "filament/spatie-laravel-settings-plugin": "^4.0",
+        "filament/spatie-laravel-tags-plugin": "^4.0",
+        "lara-zeus/spatie-translatable": "^1.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "mohamedsabil83/filament-forms-tinyeditor": "^2.4"
+        "nguyentranchung/filament-forms-tinyeditor": "dev-main"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
         "barryvdh/laravel-ide-helper": "^3.5",
         "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.24",
+        "filament/upgrade": "^4.0",
         "larastan/larastan": "^3.2",
         "laravel/pail": "^1.2",
         "laravel/pint": "^1.21",

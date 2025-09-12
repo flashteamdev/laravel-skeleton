@@ -2,6 +2,11 @@
 
 namespace App\Models\Blog;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Spatie\Tags\Tag;
+use Illuminate\Database\Eloquent\Builder;
+use ArrayAccess;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,30 +23,30 @@ use Spatie\Tags\HasTags;
  * @property string $slug
  * @property string $content_type markdown, html
  * @property string $content
- * @property \Illuminate\Support\Carbon|null $published_at
+ * @property Carbon|null $published_at
  * @property string|null $seo_title
  * @property string|null $seo_description
  * @property string|null $image
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read User|null $author
- * @property-read \App\Models\Blog\Category|null $category
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
+ * @property-read Category|null $category
+ * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
- * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\Tags\Tag> $tags
+ * @property Collection<int, Tag> $tags
  * @property-read int|null $tags_count
  *
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withAllTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withAnyTagsOfType(array|string $type)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static Builder<static>|Post newModelQuery()
+ * @method static Builder<static>|Post newQuery()
+ * @method static Builder<static>|Post query()
+ * @method static Builder<static>|Post withAllTags((ArrayAccess|Tag|array|string) $tags, ?string $type = null)
+ * @method static Builder<static>|Post withAllTagsOfAnyType($tags)
+ * @method static Builder<static>|Post withAnyTags((ArrayAccess|Tag|array|string) $tags, ?string $type = null)
+ * @method static Builder<static>|Post withAnyTagsOfAnyType($tags)
+ * @method static Builder<static>|Post withAnyTagsOfType((array|string) $type)
+ * @method static Builder<static>|Post withoutTags((ArrayAccess|Tag|array|string) $tags, ?string $type = null)
  *
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 class Post extends Model
 {

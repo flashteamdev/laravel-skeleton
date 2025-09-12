@@ -2,6 +2,9 @@
 
 namespace App\Models\Blog;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,16 +17,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $is_visible
  * @property string|null $seo_title
  * @property string|null $seo_description
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Blog\Post> $posts
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, Post> $posts
  * @property-read int|null $posts_count
  *
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Category query()
+ * @method static Builder<static>|Category newModelQuery()
+ * @method static Builder<static>|Category newQuery()
+ * @method static Builder<static>|Category query()
  *
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 class Category extends Model
 {
@@ -65,7 +68,7 @@ class Category extends Model
     /**
      * Get all categories from cache
      *
-     * @return \Illuminate\Database\Eloquent\Collection<int, static>
+     * @return Collection<int, static>
      */
     public static function getAllFromCache()
     {

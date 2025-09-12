@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,16 +17,16 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string|null $title
  * @property string|null $content
  * @property bool $is_visible
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User|null $author
- * @property-read \Illuminate\Database\Eloquent\Model $commentable
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read User|null $author
+ * @property-read Model $commentable
  *
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment query()
+ * @method static Builder<static>|Comment newModelQuery()
+ * @method static Builder<static>|Comment newQuery()
+ * @method static Builder<static>|Comment query()
  *
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 class Comment extends Model
 {
