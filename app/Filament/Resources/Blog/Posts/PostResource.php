@@ -90,7 +90,7 @@ class PostResource extends Resource
                     MarkdownEditor::make('content')
                         ->required()
                         ->fileAttachmentsDirectory('blog/posts/content')
-                        ->getUploadedAttachmentUrlUsing(fn ($file): string => str(diskPublic()->url($file))
+                        ->getFileAttachmentUrlUsing(fn ($file): string => str(diskPublic()->url($file))
                             ->replace(config('app.url'), ''))
                         ->visible(fn ($get) => $get('content_type') === 'markdown')
                         ->columnSpan('full'),
