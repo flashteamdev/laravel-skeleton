@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6678f8f22e1d97e63908099c3a76765",
+    "content-hash": "49b932d6e866dae6b4fc34d7df5d139d",
     "packages": [
         {
             "name": "althinect/filament-spatie-roles-permissions",
@@ -4013,6 +4013,84 @@
             "time": "2025-10-21T19:32:17+00:00"
         },
         {
+            "name": "nunomaduro/essentials",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nunomaduro/essentials.git",
+                "reference": "75665a7c067bbf8f0556d7e924249e9a58f9a6d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nunomaduro/essentials/zipball/75665a7c067bbf8f0556d7e924249e9a58f9a6d9",
+                "reference": "75665a7c067bbf8f0556d7e924249e9a58f9a6d9",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.44.2|^12.29.0",
+                "php": "^8.3.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25.0",
+                "orchestra/testbench": "^10.6.0",
+                "pestphp/pest": "^3.8.4",
+                "pestphp/pest-plugin-type-coverage": "^3.6.1",
+                "phpstan/phpstan": "^2.1.27",
+                "rector/rector": "^2.1.7",
+                "symfony/var-dumper": "^7.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NunoMaduro\\Essentials\\EssentialsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NunoMaduro\\Essentials\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Just better defaults for your Laravel projects.",
+            "keywords": [
+                "essentials",
+                "laravel",
+                "laravel-essentials",
+                "package",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/nunomaduro/essentials/issues",
+                "source": "https://github.com/nunomaduro/essentials/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2025-09-18T08:52:39+00:00"
+        },
+        {
             "name": "nunomaduro/termwind",
             "version": "v2.3.3",
             "source": {
@@ -4493,6 +4571,79 @@
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.0"
             },
             "time": "2025-08-30T15:50:23+00:00"
+        },
+        {
+            "name": "pinkary-project/type-guard",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pinkary-project/type-guard.git",
+                "reference": "b5511bd8d5567fba9dffca49d9da2c6c00c39434"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pinkary-project/type-guard/zipball/b5511bd8d5567fba9dffca49d9da2c6c00c39434",
+                "reference": "b5511bd8d5567fba9dffca49d9da2c6c00c39434",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.15.2",
+                "pestphp/pest": "^3.0.0",
+                "pestphp/pest-plugin-type-coverage": "3.x-dev",
+                "phpstan/phpstan": "^1.10.67",
+                "rector/rector": "^1.0.4",
+                "symfony/var-dumper": "^6.4.0|^7.0.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Functions.php"
+                ],
+                "psr-4": {
+                    "PinkaryProject\\TypeGuard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Type Guard module is part of the Gloss PHP, and allows you to narrow down the type of an variable to a more specific type.",
+            "keywords": [
+                "assert",
+                "narrow",
+                "php",
+                "pinkary-project",
+                "type",
+                "type-guard"
+            ],
+            "support": {
+                "issues": "https://github.com/pinkary-project/type-guard/issues",
+                "source": "https://github.com/pinkary-project/type-guard/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-04-28T10:20:25+00:00"
         },
         {
             "name": "pragmarx/google2fa",

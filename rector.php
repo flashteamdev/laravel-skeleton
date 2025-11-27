@@ -14,10 +14,10 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__.'/app',
         __DIR__.'/bootstrap/app.php',
-        __DIR__.'/config',
+        // __DIR__.'/config',
         __DIR__.'/database',
         __DIR__.'/public',
-        __DIR__.'/tests',
+        // __DIR__.'/tests',
     ])
     ->withSkipPath(__DIR__.'/app/Filament')
     // ->withSkipPath(__DIR__.'/app/Livewire')
@@ -39,7 +39,7 @@ return RectorConfig::configure()
         earlyReturn: true,
         strictBooleans: true,
     )
-    ->withPhpSets(php83: true)
+    ->withPhpSets(php84: true)
     ->withSets([
         LaravelLevelSetList::UP_TO_LARAVEL_110,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
