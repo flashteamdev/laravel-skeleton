@@ -1,17 +1,45 @@
-# Mago configuration file
-# For more information, see https://mago.carthage.software/#/getting-started/configuration
-php_version = "8.2.0"
+# Welcome to Mago!
+# For full documentation, see https://mago.carthage.software/tools/overview
+php-version = "8.4.0"
 
 [source]
 paths = ["app/", "database/factories/", "database/seeders/", "tests/"]
 includes = ["vendor"]
 excludes = []
 
-[format]
-print_width = 120
-tab_width = 4
-use_tabs = false
+[formatter]
+print-width = 999
+tab-width = 4
+use-tabs = false
+null-type-hint="question"
+parentheses-in-new-expression=false
+space-after-logical-not-unary-prefix-operator=true
+space-around-concatenation-binary-operator=false
+space-before-arrow-function-parameter-list-parenthesis=true
+inline-empty-classlike-braces=true
+inline-empty-method-braces=true
+inline-empty-function-braces=true
+
+method-chain-breaking-style="next_line"
+trailing-comma=true
+preserve-breaking-member-access-chain=true
+preserve-breaking-argument-list=true
+preserve-breaking-parameter-list=true
+preserve-breaking-attribute-list=true
+preserve-breaking-conditional-expression=true
 
 [linter]
-default_plugins = true
-plugins = ["laravel", "php-unit"]
+integrations = ["laravel", "phpunit"]
+
+[linter.rules]
+ambiguous-function-call = { enabled = false }
+literal-named-argument = { enabled = false }
+halstead = { effort-threshold = 7000 }
+
+[analyzer]
+find-unused-definitions = true
+find-unused-expressions = true
+analyze-dead-code = true
+check-throws = true
+allow-possibly-undefined-array-keys = true
+perform-heuristic-checks = true
