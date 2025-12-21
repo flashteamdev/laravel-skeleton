@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pages;
 
+use BackedEnum;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Schema;
+use UnitEnum;
 
-class AppSetting extends SettingsPage
+final class AppSetting extends SettingsPage
 {
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Settings';
+    protected static string|UnitEnum|null $navigationGroup = 'Settings';
 
     protected static string $settings = \App\Settings\AppSetting::class;
 

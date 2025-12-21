@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Notifications\VerifyEmail;
@@ -47,7 +49,7 @@ use Spatie\Permission\Traits\HasRoles;
  *
  * @mixin \Illuminate\Database\Eloquent\Model
  */
-class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
+final class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
 {
     use AuthMustVerifyEmail;
 
@@ -80,19 +82,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
     public function isAdmin(): bool
     {
         return $this->email === config('app.admin_email');
@@ -111,7 +100,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     {
         return $this->avatar
             ? diskPublic()->url($this->avatar)
-            : ('https://gravatar.com/avatar/'.hash('sha256', $this->email));
+            : 'https://gravatar.com/avatar/'.hash('sha256', $this->email);
     }
 
     /**
@@ -120,5 +109,18 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }
