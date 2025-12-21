@@ -17,7 +17,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -25,12 +24,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $name
  * @property string $email
  * @property string|null $avatar
- * @property Carbon|null $email_verified_at
+ * @property \Carbon\CarbonImmutable|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
  * @property string|null $timezone +7 or Asia/Ho_Chi_Minh
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions

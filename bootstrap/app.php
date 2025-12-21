@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         //
     })
-    ->withSchedule(function (Schedule $schedule) {
+    ->withSchedule(function (Schedule $schedule): void {
         $schedule->command('telescope:prune --hours=48')->daily();
     })
     ->withExceptions(function (Exceptions $exceptions): void {

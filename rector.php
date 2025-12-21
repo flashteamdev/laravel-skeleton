@@ -20,7 +20,8 @@ return RectorConfig::configure()
         // __DIR__.'/tests',
     ])
     ->withSkipPath(__DIR__.'/app/Filament')
-    // ->withSkipPath(__DIR__.'/app/Livewire')
+    ->withSkipPath(__DIR__.'/app/Livewire')
+    ->withSkipPath(__DIR__.'/database')
     ->withSkip([
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
