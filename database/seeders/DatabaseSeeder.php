@@ -15,11 +15,13 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $adminUser = User::query()->where('email', config()->string('app.admin_email'))->first();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (! $adminUser) {
+            User::factory()->create([
+                'name' => 'Admin User',
+                'email' => config()->string('app.admin_email'),
+            ]);
+        }
     }
 }
