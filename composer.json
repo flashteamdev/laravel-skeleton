@@ -31,6 +31,7 @@
         "laravel/pail": "^1.2",
         "laravel/pint": "^1.26",
         "laravel/sail": "^1.51",
+        "laravel/telescope": "^5.16",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.8",
         "phpunit/phpunit": "^11.5"
@@ -78,7 +79,7 @@
         ],
         "latest": [
             "composer require \"althinect/filament-spatie-roles-permissions:3.x-dev\" filament/filament filament/spatie-laravel-settings-plugin laravel/framework laravel/tinker nunomaduro/essentials pinkary-project/type-guard spatie/laravel-permission spatie/laravel-settings",
-            "composer require barryvdh/laravel-debugbar barryvdh/laravel-ide-helper driftingly/rector-laravel fakerphp/faker filament/upgrade larastan/larastan laravel/boost laravel/pail laravel/pint laravel/sail mockery/mockery nunomaduro/collision phpunit/phpunit --dev"
+            "composer require barryvdh/laravel-debugbar barryvdh/laravel-ide-helper driftingly/rector-laravel fakerphp/faker filament/upgrade larastan/larastan laravel/boost laravel/pail laravel/pint laravel/sail mockery/mockery nunomaduro/collision phpunit/phpunit laravel/telescope --dev"
         ],
         "format": [
             "mago fmt",
