@@ -68,6 +68,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Mus
         'email',
         'avatar',
         'password',
+        'email_verified_at',
         'timezone',
     ];
 

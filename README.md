@@ -7,7 +7,7 @@ composer install
 cp .env.example .env
 php artisan key:generate --force
 php artisan storage:link
-php artisan migrate
+php artisan migrate --seed
 # tạo tài khoản admin, nhập admin@example.com và password
 php artisan make:filament-user
 ```
