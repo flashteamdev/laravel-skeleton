@@ -1,0 +1,6 @@
+## SVG Icons
+
+1.  **Component Extraction**: Do not generate inline SVG code in Blade templates. Instead, extract SVG icons to separate files in the `resources/svg` directory (e.g., `resources/svg/camera.svg`) and use the Blade icon component: `<x-icon-camera />`.
+2.  **Explicit Dimensions**: When applying sizing classes (e.g., `class="size-5"`) to Blade icon components, strict adherence to preventing Layout Shift is required. You MUST include explicit `width` and `height` attributes matching the utility size.
+    *   **Incorrect**: `<x-icon-camera class="size-5" />`
+    *   **Correct**: `<x-icon-camera class="size-5" width="20" height="20" />`

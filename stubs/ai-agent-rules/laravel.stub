@@ -1,0 +1,16 @@
+## Strict Typing & Type Safety
+
+1. **Native Type Declarations**: Leverage PHP 8.4 features by strictly using native parameter and return types. Avoid using PHPDoc blocks for type hinting unless the type (like complex generics) cannot be expressed natively.
+2. **Typed Config Access**: Retrieve configuration values using strongly typed methods (e.g., `config()->string('key')`, `config()->integer('key')`, `config()->boolean('key')`) instead of accessing them loosely.
+3. **Typed Request Access**: Access HTTP request data using typed methods (e.g., `$request->string('name')`, `$request->integer('id')`) rather than direct dynamic property access (e.g., `$request->name`) to ensure type safety.
+4. **PHPStan Compliance**: Ensure all code adheres to **PHPStan Level 9** standards, satisfying all strict static analysis requirements.
+5. **Generics & Array Shapes**: Explicitly define structure for arrays and Laravel Collections. Use array shapes (e.g., `array{key1: string, key2: bool}`) or generics (e.g., `array<int, string>`, `Collection<int, User>`) in PHPDocs.
+
+## Code Style & Conventions
+
+1. **Documentation Language**:
+   - **General Logic**: detailed comments must be written in **Vietnamese** for functions and complex logic to maximize understanding.
+   - **Controllers**: Controller methods must have a high-level summary/overview written in **English**.
+2. **Explicit Data Passing**: Do not use `compact()`. Always define arrays explicitly (e.g., `['site' => $site]`) to improve code clarity and searchability.
+3. **Eloquent Query Syntax**: Always verify Eloquent queries with `query()` start. Use `User::query()->first()` instead of `User::first()` to aid static analysis and IDE autocomplete.
+4. **Job Dispatching**: Use the global `dispatch(new SampleJob)` helper function instead of the static `SampleJob::dispatch()` method.

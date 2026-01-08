@@ -1,0 +1,9 @@
+## Optimization & Modern Syntax
+
+1.  **Modern Gradient Syntax**: Use `bg-linear-to-*` instead of the older `bg-gradient-to-*` syntax for defining linear gradients.
+2.  **Concise Flex Utilities**: Use the shorthand `shrink-0` instead of the verbose `flex-shrink-0`.
+3.  **Unified Sizing**: Use the `size-*` utility (e.g., `size-5`) for square elements instead of specifying separate height and width utilities (e.g., `h-5 w-5`).
+
+## Best Practices & Performance
+
+4.  **SVG Dimensions**: When using `size-*` classes on SVGs, you must also include explicit `width` and `height` attributes on the `<svg>` element. This prevents layout shifts (CLS) and visual breakage before the CSS is fully loaded.

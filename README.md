@@ -35,6 +35,16 @@ composer ide
 php artisan test
 ```
 
+## AI Agent Rules
+
+Publish AI Agent rules (Cursor, Antigravity) từ các stub files có sẵn:
+
+```bash
+php artisan ai-agent:rules
+```
+
+Stub files nằm trong `stubs/ai-agent-rules/` và có thể được tùy chỉnh trước khi publish.
+
 ## Test Coverage
 
 ```bash
