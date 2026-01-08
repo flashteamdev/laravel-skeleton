@@ -96,7 +96,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Mus
         return true;
     }
 
-    public function getFilamentAvatarUrl(): ?string
+    public function getFilamentAvatarUrl(): string
     {
         return $this->avatar
             ? diskPublic()->url($this->avatar)

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -95,6 +96,13 @@ final class PublishAiAgentRulesCommand extends Command
         $skipped = 0;
 
         foreach ($selectedAgents as $agent) {
+            if (! isset(self::AGENTS[$agent])) {
+                $this->warn("Agent '{$agent}' not found in configuration.");
+                $skipped++;
+
+                continue;
+            }
+
             $agentConfig = self::AGENTS[$agent];
             $targetDir = base_path($agentConfig['dir']);
 
@@ -105,6 +113,13 @@ final class PublishAiAgentRulesCommand extends Command
             }
 
             foreach ($selectedStubs as $stubKey) {
+                if (! isset(self::STUBS[$stubKey])) {
+                    $this->warn("Stub '{$stubKey}' not found in configuration.");
+                    $skipped++;
+
+                    continue;
+                }
+
                 $stubConfig = self::STUBS[$stubKey];
                 $stubName = $stubConfig['name'];
                 $stubFile = "{$stubPath}/{$stubName}.stub";
@@ -118,10 +133,31 @@ final class PublishAiAgentRulesCommand extends Command
                 }
 
                 // Đọc nội dung stub
-                $stubContent = File::get($stubFile);
+                try {
+                    $stubContent = File::get($stubFile);
+                    if ($stubContent === '') {
+                        $this->warn("Stub file is empty: {$stubFile}");
+                        $skipped++;
+
+                        continue;
+                    }
+                } catch (Exception $e) {
+                    $this->warn("Failed to read stub file: {$stubFile} - {$e->getMessage()}");
+                    $skipped++;
+
+                    continue;
+                }
 
                 // Generate header theo agent
                 $headerMethod = $agentConfig['header'];
+                if (! method_exists($this, $headerMethod)) {
+                    $this->warn("Header method '{$headerMethod}' not found.");
+                    $skipped++;
+
+                    continue;
+                }
+
+                /** @var string $header */
                 $header = $this->{$headerMethod}($stubConfig);
 
                 // Ghi file với header + content
@@ -149,10 +185,11 @@ final class PublishAiAgentRulesCommand extends Command
         $agents = array_keys(self::AGENTS);
         $options = array_merge(['all'], $agents);
 
+        /** @var string $choice */
         $choice = $this->choice(
             'Select AI Agent(s) to publish rules to',
             $options,
-            'all'
+            'all',
         );
 
         if ($choice === 'all') {
@@ -172,10 +209,11 @@ final class PublishAiAgentRulesCommand extends Command
         $stubKeys = array_keys(self::STUBS);
         $options = array_merge(['all'], $stubKeys);
 
+        /** @var string $choice */
         $choice = $this->choice(
             'Select stub file(s) to publish',
             $options,
-            'all'
+            'all',
         );
 
         if ($choice === 'all') {
@@ -188,13 +226,15 @@ final class PublishAiAgentRulesCommand extends Command
     /**
      * Generate Cursor header
      *
-     * @param  array{name: string, description: string, alwaysApply: bool}  $stubConfig
+     * @param  array{name: string, description: string, alwaysApply: bool, trigger?: string, globs?: string}  $stubConfig
      */
     private function generateCursorHeader(array $stubConfig): string
     {
+        $description = $stubConfig['description'];
         $alwaysApply = $stubConfig['alwaysApply'] ? 'true' : 'false';
+        $globs = $stubConfig['globs'] ?? '*.{php,js,ts,blade.php}';
 
-        return "---\nalwaysApply: {$alwaysApply}\n---";
+        return "---\ndescription: {$description}\nglobs: {$globs}\nalwaysApply: {$alwaysApply}\n---";
     }
 
     /**
