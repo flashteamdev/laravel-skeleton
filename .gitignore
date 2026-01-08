@@ -25,3 +25,5 @@ Homestead.yaml
 Thumbs.db
 npm-debug.log
 yarn-error.log
+.agent/rules
+.cursor/rules
