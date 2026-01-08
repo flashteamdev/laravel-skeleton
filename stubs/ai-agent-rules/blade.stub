@@ -4,3 +4,26 @@
 2.  **Explicit Dimensions**: When applying sizing classes (e.g., `class="size-5"`) to Blade icon components, strict adherence to preventing Layout Shift is required. You MUST include explicit `width` and `height` attributes matching the utility size.
     *   **Incorrect**: `<x-icon-camera class="size-5" />`
     *   **Correct**: `<x-icon-camera class="size-5" width="20" height="20" />`
+
+## Component Driven Development
+
+When creating Laravel Blade views, verify adherence to the following Component Driven Development workflow:
+
+1.  **Analyze & Plan**: Before coding, explicitly analyze and list:
+    *   Repeating UI elements.
+    *   Components candidate for extraction.
+    *   Proposed directory structure.
+2.  **Component Rules**:
+    *   **DRY Principle**: Any structure repeated **2 times or more** MUST be extracted into a component.
+    *   **Data Handling**: Every component must define its data contract using `@props`.
+    *   **Dynamic Content**: Never hard-code data inside a component.
+    *   **Naming**: Use distinct names: `{entity}-{type}.blade.php` (e.g., `testimonial-card.blade.php`).
+3.  **Implementation Steps**:
+    *   **Step 1**: List target components.
+    *   **Step 2**: Implement individual component files.
+    *   **Step 3**: Implement the main view assembling the components.
+    *   **Step 4**: Provide a Controller sample with data structure.
+4.  **Anti-Patterns**:
+    *   ❌ Monolithic, single-file views.
+    *   ❌ Copy-pasting HTML blocks.
+    *   ❌ Hard-coding data within reusable components.
