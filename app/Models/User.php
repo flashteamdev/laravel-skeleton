@@ -28,6 +28,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $password
  * @property string|null $remember_token
  * @property string|null $timezone +7 or Asia/Ho_Chi_Minh
+ * @property string $language
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
@@ -70,6 +71,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Mus
         'password',
         'email_verified_at',
         'timezone',
+        'language',
     ];
 
     /**

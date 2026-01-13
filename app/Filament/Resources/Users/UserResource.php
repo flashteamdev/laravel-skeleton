@@ -45,6 +45,13 @@ final class UserResource extends Resource
             Select::make('timezone')
                 ->options(array_combine(DateTimeZone::listIdentifiers(), DateTimeZone::listIdentifiers()))
                 ->searchable(),
+            Select::make('language')
+                ->options([
+                    'en' => 'English',
+                    'vi' => 'Tiếng Việt',
+                ])
+                ->default('en')
+                ->required(),
             DateTimePicker::make('email_verified_at'),
             TextInput::make('password')
                 ->password()
@@ -62,6 +69,7 @@ final class UserResource extends Resource
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('email')->searchable(),
                 ImageColumn::make('avatar')->circular(),
+                TextColumn::make('language')->badge(),
                 TextColumn::make('email_verified_at')->dateTime()->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

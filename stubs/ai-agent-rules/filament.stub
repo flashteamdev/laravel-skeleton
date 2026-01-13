@@ -1,0 +1,27 @@
+# Filament Resource Management Rules
+
+When adding, modifying, or deleting columns in a database table that has a corresponding Filament Resource, you MUST:
+
+1.  **Form Schema Update**:
+    -   Add the appropriate input component to the `form()` method.
+    -   Use descriptive labels and appropriate validation (e.g., `required()`, `maxLength()`, `unique()`).
+    -   Select appropriate component types: `TextInput`, `Select`, `DateTimePicker`, `Toggle`, `FileUpload`, etc.
+    -   For `Select` components, provide logical options or use `options(BackedEnum::class)` if applicable.
+
+2.  **Table Columns Update**:
+    -   Add the corresponding column to the `table()` method.
+    -   Use appropriate column types: `TextColumn`, `ImageColumn`, `IconColumn`, `ToggleColumn`, etc.
+    -   Consider UX enhancements:
+        -   `searchable()`: If the column is frequently used for finding records.
+        -   `sortable()`: If the column contains data that is useful to sort by.
+        -   `toggleable(isToggledHiddenByDefault: true)`: For columns that are useful but shouldn't clutter the main view.
+        -   `badge()`: For status or category-like string/enum values.
+        -   `dateTime()`/`date()`: For timestamp/date columns.
+
+3.  **Model Compatibility**:
+    -   Ensure the new column is added to the `$fillable` array in the Model.
+    -   Add appropriate type hints/docblocks to the Model for better IDE support in Filament.
+
+4.  **Relationships**:
+    -   If the new column is a foreign key, use `Select::make('user_id')->relationship('user', 'name')` in the form.
+    -   Use `TextColumn::make('user.name')` in the table.

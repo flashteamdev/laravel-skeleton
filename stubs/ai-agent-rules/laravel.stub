@@ -15,3 +15,11 @@
 2. **Explicit Data Passing**: Do not use `compact()`. Always define arrays explicitly (e.g., `['site' => $site]`) to improve code clarity and searchability.
 3. **Eloquent Query Syntax**: Always verify Eloquent queries with `query()` start. Use `User::query()->first()` instead of `User::first()` to aid static analysis and IDE autocomplete.
 4. **Job Dispatching**: Use the global `dispatch(new SampleJob)` helper function instead of the static `SampleJob::dispatch()` method.
+
+## Database & Model Changes
+
+1. **Mass Assignment**: When adding a new column to a table, always add it to the `$fillable` array in the corresponding Model.
+2. **Model Metadata**: Update the `#property` docblock in the Model for any new columns added to the database.
+3. **Factories**: When a new column is added, update the corresponding Model Factory to include a default value or fake data for that column.
+4. **Ecosystem Impact**: Always check if the new column needs to be managed in administrative interfaces like **Filament** or exposed via API Resources.
+
