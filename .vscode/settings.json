@@ -6,5 +6,8 @@
     "[blade]": {
         "editor.defaultFormatter": "shufo.vscode-blade-formatter",
         "editor.formatOnSave": true
-    }
+    },
+    "bladeFormatter.format.indentSize": 2,
+    "bladeFormatter.format.sortTailwindcssClasses": true,
+    "bladeFormatter.format.wrapLineLength": 999
 }

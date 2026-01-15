@@ -1,7 +1,10 @@
 ## SVG Icons
 
-1.  **Component Extraction**: Do not generate inline SVG code in Blade templates. Instead, extract SVG icons to separate files in the `resources/svg` directory (e.g., `resources/svg/camera.svg`) and use the Blade icon component: `<x-icon-camera />`.
-2.  **Explicit Dimensions**: When applying sizing classes (e.g., `class="size-5"`) to Blade icon components, strict adherence to preventing Layout Shift is required. You MUST include explicit `width` and `height` attributes matching the utility size.
+1.  **Component Extraction**: Do not generate inline SVG code in Blade templates. Instead, extract SVG icons to separate files in the `resources/svg` directory (e.g., `resources/svg/camera.svg`).
+2.  **Blade Icons Integration**: Icons are automatically handled by the [blade-icons](https://github.com/driesvints/blade-icons) package. Do NOT create manual Blade components or wrappers for icons.
+3.  **Raw SVG Only**: SVG files in `resources/svg` MUST be pure SVG/XML code. Do NOT include Blade syntax like `@props`, `@php`, or `{{ $attributes }}` inside these files.
+4.  **Component Usage**: Use the icon set's prefix (configured as `icon` in this project) followed by the filename: `<x-icon-camera />`.
+5.  **Explicit Dimensions**: To prevent Layout Shift (CLS), you MUST include explicit `width` and `height` attributes matching the Tailwind `size-*` utility classes.
     *   **Incorrect**: `<x-icon-camera class="size-5" />`
     *   **Correct**: `<x-icon-camera class="size-5" width="20" height="20" />`
 

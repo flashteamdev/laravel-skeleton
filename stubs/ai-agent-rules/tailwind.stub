@@ -1,9 +1,13 @@
 ## Optimization & Modern Syntax
 
 1.  **Modern Gradient Syntax**: Use `bg-linear-to-*` instead of the older `bg-gradient-to-*` syntax for defining linear gradients.
-2.  **Concise Flex Utilities**: Use the shorthand `shrink-0` instead of the verbose `flex-shrink-0`.
+2.  **Concise Flex Utilities**: Use the shorthand `shrink-0` instead of the verbose `flex-shrink-0`, and `grow` instead of `flex-grow`.
 3.  **Unified Sizing**: Use the `size-*` utility (e.g., `size-5`) for square elements instead of specifying separate height and width utilities (e.g., `h-5 w-5`).
+4.  **Standard Utility Scales**: Prefer using standard Tailwind utility classes (e.g., `h-256`, `w-5xl`, `w-7xl`) over arbitrary values (e.g., `h-[64rem]`, `w-[80rem]`) when they map to the standard theme scale.
+5.  **Modern Aspect Ratio**: Use the bare `aspect-ratio/ratio` syntax (e.g., `aspect-1155/678`) instead of the arbitrary bracket syntax `aspect-[1155/678]`.
+6.  **Clean Mask Syntax**: Use the `mask-[...]` utility for CSS masks instead of the verbose arbitrary property syntax `[mask-image:...]`.
 
 ## Best Practices & Performance
 
-4.  **SVG Dimensions**: When using `size-*` classes on SVGs, you must also include explicit `width` and `height` attributes on the `<svg>` element. This prevents layout shifts (CLS) and visual breakage before the CSS is fully loaded.
+7.  **SVG Dimensions**: When using `size-*` classes on SVGs, you must also include explicit `width` and `height` attributes on the `<svg>` element. This prevents layout shifts (CLS) and visual breakage before the CSS is fully loaded.
+8.  **Avoid Redundant Weights**: Do not apply multiple font-weight utilities (e.g., `font-medium` and `font-semibold`) to the same element; choose the one that matches the design intent.
