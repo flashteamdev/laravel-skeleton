@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Welcome to Laravel Skeleton - Premium Starter Kit')
-@section('meta_description',
-  'The ultimate Laravel starter kit for building robust, scalable web applications with
-  ease.')
+
 
 @section('content')
   {{-- Hero Section --}}

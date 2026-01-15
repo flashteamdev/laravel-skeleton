@@ -1,0 +1,37 @@
+# SEO Implementation Rules
+
+This project uses the `artesaos/seotools` package to manage meta tags and SEO. Follow these rules when implementing or updating SEO-related logic.
+
+## 1. Global Configuration
+- Core settings are located in `config/seotools.php`.
+- Default values (Title, Description, Site Name) should be updated there if they apply to the entire site.
+
+## 2. Layout Integration
+- Always include `{!! SEO::generate() !!}` within the `<head>` of your main layout file (`resources/views/layouts/app.blade.php`).
+- Remove any manual `<title>` or `<meta name="description">` tags to avoid duplicates.
+
+## 3. Controller Usage (Preferred)
+Set SEO values inside Controller methods using the `SEOTools` facade. This keeps SEO logic out of the views.
+
+```php
+use Artesaos\SEOTools\Facades\SEOTools;
+
+public function show(Product $product)
+{
+    SEOTools::setTitle($product->name);
+    SEOTools::setDescription($product->summary);
+    SEOTools::setCanonical(url()->current());
+    SEOTools::opengraph()->setUrl(url()->current());
+    SEOTools::opengraph()->addProperty('type', 'articles');
+    SEOTools::twitter()->setSite('@yourhandle');
+
+    return view('product.show', compact('product'));
+}
+```
+
+## 4. Best Practices
+- **Titles**: Use `SEOTools::setTitle()` to set the page-specific title. The package handles separators and site names based on `config/seotools.php`.
+- **Descriptions**: Keep descriptions between 150-160 characters for optimal search engine display.
+- **OpenGraph**: Always set the `url` and `type` for Social Media sharing.
+- **Images**: Use `SEOTools::opengraph()->addImage($imageUrl)` for dynamic content like blog posts or products.
+- **Avoid Blade Sections**: Do not use `@section('title')` or `@section('description')` in Blade views; migrate that logic to the Controller.

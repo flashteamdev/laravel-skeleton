@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,6 +15,11 @@ final class WelcomeController extends Controller
      */
     public function __invoke(Request $request): View
     {
+        SEOTools::setTitle('Premium Starter Kit');
+        SEOTools::setDescription('The ultimate Laravel starter kit for building robust, scalable web applications with ease.');
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'website');
+        SEOTools::twitter()->setSite('@laravel_skeleton');
         // Static testimonials for demonstration
         $testimonials = [
             [
