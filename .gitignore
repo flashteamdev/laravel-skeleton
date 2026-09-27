@@ -27,3 +27,7 @@ npm-debug.log
 yarn-error.log
 .agent/rules
 .cursor/rules
+public/css/filament
+public/js/filament
+public/fonts/filament
+public/vendor/livewire

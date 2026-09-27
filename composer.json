@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "althinect/filament-spatie-roles-permissions": "3.x-dev",
+        "althinect/filament-spatie-roles-permissions": "^4.0",
         "artesaos/seotools": "^1.3",
         "filament/filament": "^4.5",
         "filament/spatie-laravel-settings-plugin": "^4.5",
